@@ -1,0 +1,66 @@
+:root{
+  --bg: #ffffff;
+  --text: #1f1f1f;
+  --brand-ylw: #ffd54d;   /* warm yellow */
+  --brand-org: #ff8a3d;   /* orange */
+  --brand-ylw-100:#fff4cc;
+  --muted:#f6f6f6;
+  --card:#ffffff;
+  --border:#eee;
+}
+body{ background:var(--bg); color:var(--text); }
+
+.section{ padding: 24px 0; }
+.section .title{
+  margin:0 0 12px;
+  font-size: clamp(18px,2.4vw,24px);
+  font-weight: 800;
+  letter-spacing:.2px;
+}
+.rainbar{
+  height:6px; width:120px; border-radius:999px; margin:6px 0 18px;
+  background: linear-gradient(90deg,var(--brand-ylw),var(--brand-org));
+}
+
+/* CTA hero band */
+.hero-band{
+  border-radius:20px; padding:28px; margin:12px 0 20px;
+  background: radial-gradient(90% 120% at 10% 10%, var(--brand-ylw-100), #fff) ,
+              linear-gradient(135deg, var(--brand-ylw), var(--brand-org));
+  color:#2a2a2a; position:relative; overflow:hidden;
+}
+.hero-band .inner{
+  background:#fff; padding:18px 20px; border-radius:16px; display:inline-block;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+
+/* Category tiles */
+.cat-rail, .cat-grid{ display:grid; gap:14px; }
+.cat-rail{
+  grid-auto-flow: column; grid-auto-columns: minmax(128px, 1fr);
+  overflow:auto; padding-bottom:4px; scroll-snap-type:x mandatory;
+}
+.cat-tile{
+  border:1px solid var(--border); border-radius:16px; background:var(--card);
+  scroll-snap-align:start; overflow:hidden; transition: transform .18s ease, box-shadow .18s ease;
+}
+.cat-tile:hover{ transform: translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.08); }
+.cat-tile img{ width:100%; height:110px; object-fit:cover; display:block; }
+.cat-tile .name{ padding:8px 10px; font-weight:600; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* Category grid (for many categories) */
+.cat-grid{ grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); }
+.load-more{
+  margin:14px auto 0; display:block; padding:10px 14px; border-radius:999px;
+  border:1px solid var(--brand-org); background:#fff; cursor:pointer; font-weight:600;
+}
+
+/* Banner frame */
+.banner-frame{
+  border-radius:16px; overflow:hidden; border:1px solid var(--border);
+  box-shadow:0 6px 16px rgba(0,0,0,.05)
+}
+
+html, body, #root { height: 100%; }
+.app { min-height: 100%; display: flex; flex-direction: column; }
+.page { flex: 1 0 auto; }

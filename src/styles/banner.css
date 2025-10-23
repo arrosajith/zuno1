@@ -1,0 +1,59 @@
+:root{
+  /* original design target */
+  --banner-max-w: 1600px;
+  --banner-ratio: 16 / 6;      /* 1600×600 */
+  --banner-h-min: 160px;       /* phones */
+  --banner-h-ideal: 28vw;      /* fluid */
+  --banner-h-max: 600px;       /* desktops */
+}
+
+/* wrapper centers the banner on every screen */
+.banner{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+/* viewport keeps aspect ratio and handles overflow cleanly */
+.banner__viewport{
+  width: min(100%, var(--banner-max-w));
+  height: clamp(var(--banner-h-min), var(--banner-h-ideal), var(--banner-h-max));
+  aspect-ratio: var(--banner-ratio);
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  box-shadow: 0 6px 16px rgba(0,0,0,.05);
+}
+
+/* image fills the frame without distortion */
+.banner__img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;      /* crops safely on odd ratios */
+  object-position: center;
+}
+
+/* Big screens / TVs: allow a taller banner */
+@media (min-width: 1920px){
+  :root{ --banner-max-w: 1920px; --banner-h-max: 720px; }
+}
+@media (min-width: 2560px){
+  :root{ --banner-max-w: 2400px; --banner-h-max: 900px; }
+}
+
+/* Optional: full-bleed variant (edge-to-edge hero) */
+.banner--fullbleed{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+/* Respect users who prefer less motion (for auto-sliders) */
+@media (prefers-reduced-motion: reduce){
+  .banner [data-animate="slide"] { animation: none !important; }
+}
